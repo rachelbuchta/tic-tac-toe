@@ -14,7 +14,4 @@ class Player {
 
   }
 
-  stringify() {
-    JSON.stringify(this)
-  }
 }

@@ -1,7 +1,7 @@
 class Game {
-  constructor (playerOne, playerTwo) {
-    this.playerOne = playerOne;
-    this.playerTwo = playerTwo;
+  constructor() {
+    this.playerOne = new Player("one", "X")
+    this.playerTwo = new Player("two", "O")
     this.currentTurn = null;
     this.board =  ["", "", "", "", "","","","",""]
     this.winningCombos = [
@@ -13,21 +13,22 @@ class Game {
      [0,3,6],
      [1,4,7],
      [2,5,8]
-   ];
+   ]
     this.gameData = []
     this.gameRunning = false;
     this.playerWin = false;
     this.playerDraw = false;
     this.turns = 0;
-
   }
 
 assignPlayer() {
  this.gameRunning = true;
  if(this.currentTurn === null) {
    this.currentTurn = this.playerOne.token;
-   return this.currentTurn;
-  }
+ }
+
+ return this.currentTurn;
+
 }
 
   togglePlayers() {
@@ -36,13 +37,8 @@ assignPlayer() {
     } else if (this.currentTurn === this.playerTwo.token) {
      this.currentTurn = this.playerOne.token
     }
-    // return this.currentTurn
-        this.makeMove()
+    return this.currentTurn
   }
-
-
-
-
 
 makeMove(index) {
   var currentMove = this.currentTurn
@@ -50,23 +46,22 @@ makeMove(index) {
   if (this.board[index] === emptySquare) {
     this.board[index] += currentMove
     this.turns ++
+    return this.board
   }
-  this.populateWinnerData(index)
-  this.gameComboCheck()
-  this.gameDrawCheck()
-  // this.togglePlayers()
-}
+  }
 
-  populateWinnerData(index) {
+  populatePlayerData(index) {
     if(this.currentTurn === this.playerOne.token) {
       this.playerOne.playerData.push(index)
+      return this.playerOne.playerData
     } else if (this.currentTurn === this.playerTwo.token) {
       this.playerTwo.playerData.push(index)
+      return this.playerTwo.playerData
     }
   }
 
 gameComboCheck() {
-  if (this.playerOne.playerData.length ===3 || this.playerTwo.playerData.length === 3) {
+  if (this.playerOne.playerData.length === 3 || this.playerTwo.playerData.length === 3) {
   for (var i = 0; i < this.winningCombos.length; i++) {
     var combo = this.winningCombos[i];
     for(var j = 0; j < combo.length; j ++) {
@@ -83,6 +78,7 @@ gameComboCheck() {
     this.togglePlayers()
   }
 }
+//array prortype .includes
 
 
   // with each move did they win? Comparing stored moves to winning combonation object each combo is an array of three (8 combos)
@@ -95,13 +91,16 @@ gameDrawCheck() {
     this.playerDraw = true
     this.gameRunning = false
     return "It's A Draw"
-  } else {
-    this.togglePlayers()
-  }
+}
 }
 
 restartGame() {
-  // who won the most recent game
+  if (this.playerWin === true || this.playerDraw === true) {
+    this.turns = 0
+    this.board = ["", "", "", "", "","","","",""]
+    this.playerOne.playerData = []
+    this.playerTwo.playerData = []
+  }
 }
 }
 

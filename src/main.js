@@ -1,33 +1,37 @@
+
+var currentGame = new Game()
 //querySelectors
 var gameBoard = document.querySelector(".game-board")
+var clickedSquare = document.querySelectorAll(".box")
 
-//event delegation - use after the inital rendering
 
 
 
 //eventListeners
-window.addEventListener("load", beginGame)
-// gameBoard.addEventListener("click", selectSquare)
+window.addEventListener("load", playGame)
+gameBoard.addEventListener("click", selectSquare)
 
 
+function playGame(index) {
+currentGame.assignPlayer()
+}
 
-function beginGame(index) {
-    var playerOne = new Player("one", "X")
-    var playerTwo = new Player("two", "O")
-    var currentGame = new Game(playerOne, playerTwo)
-    debugger
-    currentGame.assignPlayer()
-    currentGame.makeMove(1)
-    // JSON.stringify(playerOn
-    // JSON.stringify(playerTwo)
-  }
+function selectSquare(event) {
+console.log(event.target.id)
+var squareIndex = event.target.id[event.target.id.length -1]
+if(currentGame.board.includes(currentGame.currentTurn) === false) {
+  currentGame.makeMove(squareIndex)
+  console.log(squareIndex)
+  for (var i = 0; i < clickedSquare.length; i ++) {
+    clickedSquare[i].innerHTML = currentGame.board[i]
+    }
+    currentGame.populatePlayerData(squareIndex)
 
-// function selectSquare(event, currentGame) {
-//   if(event.target.closest('.box')) {
-//     var clickedSquare = event.target.closest(".box")
-//     clickedSquare.innerText =
-//   }
-// }
+    currentGame.togglePlayers()
+}
+}
+
+
 
 
 
