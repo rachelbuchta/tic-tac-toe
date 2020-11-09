@@ -15,11 +15,10 @@ class Game {
      [2,5,8]
    ];
     this.gameData = []
-    // this.currentMove = currentMove;   //selected table cell
-    // this.currentPlayer = currentPlayer;   //
     this.gameRunning = false;
     this.playerWin = false;
     this.playerDraw = false;
+    this.turns = 0;
 
   }
 
@@ -28,34 +27,29 @@ assignPlayer() {
     this.currentTurn = this.playerOne;
     return this.currentTurn;
   }
-
 }
-// present an empty newBoard
-//
-
-startNewGame(player, newBoard, currentMove) {
-    var newGame = new Game(player, newBoard, currentMove)
-    console.log(this.player)
-    console.log(this.newBoard)
-    //user sees a token at the top indicating playerOne
-    //playerOne clicks a square this.currentMove is updated  and is compared against winning combonations
-    //togglePlayers()
-    //player2 clicks a square and this.currentMove is updated and
-
-  }
 
   togglePlayers() {
     if(this.currentTurn === this.playerOne) {
       this.currentTurn = this.playerTwo
-    } else {
+    } else if (this.currentTurn === this.playerTwo) {
      this.currentTurn = this.playerOne
     }
     return this.currentTurn
-  }
-
-  makeMove(i) {
 
   }
+
+  makeMove(index) {
+    var currentMove = this.currentTurn
+    var emptySquare = ""
+      if (this.board[index] === emptySquare) {
+        this.board[index] += currentMove
+        this.turns ++
+        this.togglePlayers()
+        return this.board
+      }
+    }
+
 
   storePlayerOneMoves() {
    //after the first click, store that players place in the table
@@ -72,7 +66,10 @@ gameWinCheck() {
 // change respective scores (score model) push into players array what there winning combos
 
 gameDrawCheck() {
-
+  if(this.turns === 9) {
+    this.playerDraw = true
+    return "It's A Draw"
+  }
 }
 
 restartGame() {

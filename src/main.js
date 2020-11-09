@@ -1,3 +1,5 @@
+  var currentGame = new Game()
+
 //querySelectors
 var gameBoard = document.querySelector(".gameboard")
 var box0 = document.querySelector("#box0")
@@ -18,19 +20,24 @@ window.addEventListener("load", startNewGame)
 
 
 
-function startNewGame(game) {
-debugger
-    var currentGame = new Game()
+function startNewGame() {
     currentGame.gameRunning = true;
-    // currentGame.currentTurn = game.playerOne
     currentGame.assignPlayer()
-    currentGame.togglePlayers()
-
-    console.log(this.playerOne)
-    console.log(this.newBoard)
+    debugger
+    playGame()
+    // currentGame.makeMove(2)
+    // console.log(currentGame.board)
+    // currentGame.togglePlayers()
     //user sees a token at the top indicating playerOne
     //playerOne clicks a square this.currentMove is updated  and is compared against winning combonations
     //togglePlayers()
     //player2 clicks a square and this.currentMove is updated and
 
   }
+function playGame() {
+  for(var i = 0; i < 9; i ++) {
+  currentGame.makeMove(3)
+  console.log(currentGame.board)
+  // currentGame.togglePlayers()
+}
+}
