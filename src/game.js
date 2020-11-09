@@ -1,7 +1,7 @@
 class Game {
-  constructor () {
-    this.playerOne = "X"
-    this.playerTwo = "O"
+  constructor (playerOne, playerTwo) {
+    this.playerOne = playerOne;
+    this.playerTwo = playerTwo;
     this.currentTurn = null;
     this.board =  ["", "", "", "", "","","","",""]
     this.winningCombos = [
@@ -23,9 +23,10 @@ class Game {
   }
 
 assignPlayer() {
-  if(this.currentTurn === null) {
-    this.currentTurn = this.playerOne;
-    return this.currentTurn;
+ this.gameRunning = true;
+ if(this.currentTurn === null) {
+   this.currentTurn = this.playerOne;
+   return this.currentTurn;
   }
 }
 
@@ -39,16 +40,29 @@ assignPlayer() {
 
   }
 
-  makeMove(index) {
-    var currentMove = this.currentTurn
-    var emptySquare = ""
-      if (this.board[index] === emptySquare) {
-        this.board[index] += currentMove
-        this.turns ++
-        this.togglePlayers()
-        return this.board
-      }
+  playGame() {
+  this.makeMove(4)
+  this.gameComboCheck()
+  this.togglePlayers()
+  }
+
+
+makeMove(index) {
+  var currentMove = this.currentTurn
+  var emptySquare = ""
+  if (this.board[index] === emptySquare) {
+    this.board[index] += currentMove
+    this.turns ++
+  }
+}
+
+  populateWinnerData() {
+    if(this.currentTurn === this.playerOne) {
+      this.playerOne.playerData.push(index)
+    } else if (this.currentTurn === this.playerTwo) {
+      this.playerTwo.playerData.push(index)
     }
+  }
 
 
   storePlayerOneMoves() {
@@ -59,15 +73,42 @@ assignPlayer() {
    //
  }
 
-gameWinCheck() {
+// playerOneDataCheck(array) {
+//   if(this.currentTurn === this.playerOne) {
+//   for (var i = 0; i < this.playerOne.playerData.length) {
+//     if playerOne.playerData[i] ===
+//   }
+// }
+
+
+gameComboCheck() {
+  for (var i = 0; i < this.winningCombos.length; i++) {
+    var combo = this.winningCombos[i];
+    for(var j = 0; j < combo.length; j ++) {
+      if(combo[j] === this.playerOne.playerData) {
+        this.playerWin = true;
+        this.playerOne.wins++
+      } else if(combo[j] === this.playerTwo.playerData) {
+        this.playerWin = true;
+        this.playerTwo.wins ++
+      }
+      }
+    }
+  }
+
+//
+//
+//
+// }
   // with each move did they win? Comparing stored moves to winning combonation object each combo is an array of three (8 combos)
-} // returns a boolean if false then toggle player
+ // returns a boolean if false then toggle player
 // if true game ends and restarts after a couple seconds
 // change respective scores (score model) push into players array what there winning combos
 
 gameDrawCheck() {
   if(this.turns === 9) {
     this.playerDraw = true
+    this.gameRunning = false
     return "It's A Draw"
   }
 }
@@ -77,6 +118,8 @@ restartGame() {
 }
 }
 
-//create winning combo object in game class
-
-// game starts with an empty board
+// shoudld i push each players move to its own stored data array and then check them agains winning comboas?
+// would i use  a for loop and conditional?
+//best way to go about clicking sqaures.. shoudld i make each square a button or do it by event.target.classlsit?
+//gameflow?
+//how to use player class in game class

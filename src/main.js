@@ -1,5 +1,3 @@
-  var currentGame = new Game()
-
 //querySelectors
 var gameBoard = document.querySelector(".gameboard")
 var box0 = document.querySelector("#box0")
@@ -11,7 +9,7 @@ var box5 = document.querySelector("#box5")
 var box6 = document.querySelector("#box6")
 var box7 = document.querySelector("#box7")
 var box8 = document.querySelector("#box8")
-
+//event delegation - use after the inital rendering
 
 
 
@@ -21,10 +19,20 @@ window.addEventListener("load", startNewGame)
 
 
 function startNewGame() {
-    currentGame.gameRunning = true;
+    var playerOne = new Player("one", "X")
+    var playerTwo = new Player("two", "O")
+    var currentGame = new Game(playerOne, playerTwo)
+
+    //
+      debugger
     currentGame.assignPlayer()
-    debugger
-    playGame()
+    // currentGame.playGame()
+    currentGame.playGame()
+    // JSON.stringify(playerOne)
+    // JSON.stringify(playerTwo)
+    console.log(playerOne)
+    console.log(currentGame.board)
+
     // currentGame.makeMove(2)
     // console.log(currentGame.board)
     // currentGame.togglePlayers()
@@ -34,10 +42,3 @@ function startNewGame() {
     //player2 clicks a square and this.currentMove is updated and
 
   }
-function playGame() {
-  for(var i = 0; i < 9; i ++) {
-  currentGame.makeMove(3)
-  console.log(currentGame.board)
-  // currentGame.togglePlayers()
-}
-}
