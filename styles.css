@@ -5,9 +5,10 @@
 
 body {
   display: flex;
-  /* background-image: url("https://i.ytimg.com/vi/4gmrHQa7fEg/maxresdefault.jpg");
-  background-color: transparent; */
+  /* background-image: url("https://images.unsplash.com/photo-1580917623611-b1ca14ba1b5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"); */
+  background-color: transparent;
   height: 100vh;
+  opacity: 0.5
 }
 
 .player-one {
@@ -62,6 +63,7 @@ h1 {
   grid-template-columns: 50% 50% 50%;
   font-size: 3em;
   text-align: center;
+  padding: 1%;
   justify-content: space-evenly;
   width: 45%;
   height: 60%;
@@ -76,16 +78,19 @@ h1 {
 #box5 {
   border-bottom: .2em solid black;
   padding-top: 1%;
+
 }
 
 #box0,
 #box3,
 #box6 {
   border-right: .2em solid black;
+
 }
 
 #box2,
 #box5,
 #box8 {
   border-left: .2em solid black;
+
 }
