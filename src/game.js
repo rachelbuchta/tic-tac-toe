@@ -1,47 +1,106 @@
 class Game {
-  constructor({playerOne: player, playerTwo: player, currentMove: currentMove}) {
-    this.playerOne = player;   //
-    this.playerTwo = player;  //
-    this.currentMove = currentMove;   //selected table cell
-    this.currentPlayer = currentPlayer;   //
-    this.playerWin = false;
-    this.playerDraw = false;
-
+  constructor() {
+    this.players = [new Player('1', '🌝'), new Player('2', '🪐')]
+    this.currentPlayer = null
+    this.board = ["", "", "", "", "", "", "", "", ""]
+    this.winningCombos = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8]
+    ]
+    this.gameRunning = false
+    this.playerWin = false
+    this.playerDraw = false
+    this.turns = 0
   }
 
-  beginGame() {
-    //user sees a token at the top indicating playerOne
-    //playerOne clicks a square this.currentMove is updated  and is compared against winning combonations
-    //togglePlayers()
-    //player2 clicks a square and this.currentMove is updated and
-
+  assignPlayer() {
+    this.gameRunning = true
+    if (this.currentPlayer === null) {
+      this.currentPlayer = this.players[0].token;
+    }
   }
 
   togglePlayers() {
-
+    if (this.currentPlayer === this.players[0].token) {
+      this.currentPlayer = this.players[1].token
+    } else if (this.currentPlayer === this.players[1].token) {
+      this.currentPlayer = this.players[0].token
+    }
   }
 
-  storePlayerOneMoves() {
-   //after the first click, store that players place in the table
- }
+  makeMove(index) {
+    var currentMove = this.currentPlayer
+    var emptySquare = ""
+    if (this.board[index] === emptySquare) {
+      this.board[index] += currentMove
+      this.turns++
+      this.populatePlayerData(index)
+      this.gameDrawCheck()
+      this.gameWinCheck()
+      this.togglePlayers()
+    }
+  }
 
- storePlayerTwoMoves() {
-   //
- }
+  populatePlayerData(index) {
+    if (this.currentPlayer === this.players[0].token) {
+      this.players[0].playerData.push(parseInt(index))
+      return this.players[0].playerData
+    } else if (this.currentPlayer === this.players[1].token) {
+      this.players[1].playerData.push(parseInt(index))
+      return this.players[1].playerData
+    }
+  }
 
-gameWinCheck() {
-  // with each move did they win? Comparing stored moves to winning combonation object each combo is an array of three (8 combos)
-} // returns a boolean if false then toggle player
-// if true game ends and restarts after a couple seconds
-// change respective scores (score model) push into players array what there winning combos
+  gameWinCheck() {
+    var playerOneData = this.players[0].playerData
+    var playerTwoData = this.players[1].playerData
+    if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
+      for (var i = 0; i < this.winningCombos.length; i++) {
+        if (playerOneData.includes(this.winningCombos[i][0])
+            && playerOneData.includes(this.winningCombos[i][1])
+            && playerOneData.includes(this.winningCombos[i][2])) {
+          this.gameRunning = false
+          this.players[0].winner = true
+          this.players[0].wins++
+          this.playerWin = true
+          } else if (playerTwoData.includes(this.winningCombos[i][0])
+          && playerTwoData.includes(this.winningCombos[i][1])
+          && playerTwoData.includes(this.winningCombos[i][2])) {
+          this.gameRunning = false
+          this.players[1].winner = true
+          this.players[1].wins++
+          this.playerWin = true
+        }
+      }
+    }
+    this.restartGame()
+  }
 
-gameDrawCheck() {
+  gameDrawCheck() {
+    if (this.turns === 9 && this.playerWin === false) {
+      this.playerDraw = true
+      this.gameRunning = false
+      this.restartGame()
+    }
+  }
 
+  // restartTimer() {
+  //   setTimeout(this.restartGame(), 1000)
+  // }
+
+  restartGame() {
+
+    if (this.playerWin === true || this.playerDraw === true) {
+      this.turns = 0
+      this.board = ["", "", "", "", "", "", "", "", ""]
+      this.players[0].playerData = []
+      this.players[1].playerData = []
+    }
+  }
 }
-
-restartGame() {
-  // who won the most recent game
-}
-}
-
-//create winning combo object in game class
