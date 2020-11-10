@@ -49,42 +49,44 @@ class Game {
 
   populatePlayerData(index) {
     if (this.currentPlayer === this.players[0].token) {
-      this.players[0].playerData.push(index)
+      this.players[0].playerData.push(parseInt(index))
       return this.players[0].playerData
     } else if (this.currentPlayer === this.players[1].token) {
-      this.players[1].playerData.push(index)
+      this.players[1].playerData.push(parseInt(index))
       return this.players[1].playerData
     }
   }
 
   gameWinCheck() {
+    var playerOneData
+    var playerTwoData
     if (this.players[0].playerData.length >= 3 || this.players[1].playerData.length >= 3) {
-      debugger
       for (var i = 0; i < this.winningCombos.length; i++) {
-        var combo = this.winningCombos[i]
-        // for (var j = 0; j < combo.length; j++) {
-          // var winningCombo = combo[j]
-          if (this.players[0].playerData.includes(this.winningCombos[i])) {
-            this.players[0].winner = true
-            this.players[0].wins ++
-            this.playerWin = true
-          } else if (this.players[1].playerData.includes(this.winningCombos[i])) {
-            this.players[1].winner = true
-            this.players[1].wins ++
-            this.playerWin = true
-          // }
-          }
+        if (this.players[0].playerData.includes(this.winningCombos[i][0])
+            && this.players[0].playerData.includes(this.winningCombos[i][1])
+            && this.players[0].playerData.includes(this.winningCombos[i][2])) {
+          this.players[0].winner = true
+          this.players[0].wins++
+          this.playerWin = true
+        } else if (this.players[1].playerData.includes(this.winningCombos[i][0])
+          && this.players[1].playerData.includes(this.winningCombos[i][1])
+          && this.players[1].playerData.includes(this.winningCombos[i][2])) {
+          this.players[1].winner = true
+          this.players[1].wins++
+          this.playerWin = true
         }
       }
-   }
+    }
+  }
 
+/// currentPlayer
 
- // (combo[j] === this.players[0].playerData) {
- //   this.playerWin = true;
- //   this.players[0].wins++
- // } else if (combo[j] === this.players[1].playerData) {
- //   this.playerWin = true;
- //   this.players[1].wins++
+  // (combo[j] === this.players[0].playerData) {
+  //   this.playerWin = true;
+  //   this.players[0].wins++
+  // } else if (combo[j] === this.players[1].playerData) {
+  //   this.playerWin = true;
+  //   this.players[1].wins++
   //array prortype .includes
 
 
@@ -97,7 +99,12 @@ class Game {
     }
   }
 
+  // restartTimer() {
+  //   setTimeout(this.restartGame(), 1000)
+  // }
+
   restartGame() {
+
     if (this.playerWin === true || this.playerDraw === true) {
       this.turns = 0
       this.board = ["", "", "", "", "", "", "", "", ""]

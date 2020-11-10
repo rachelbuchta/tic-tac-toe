@@ -26,8 +26,8 @@ function playGame(event) {
 }
 
 function displayDrawMessage() {
-    gameStatus.innerText = "It's A Draw!"
-  }
+  gameStatus.innerText = "It's A Draw!"
+}
 
 function togglePlayerMessage() {
   gameStatus.innerText = `It's ${currentGame.currentPlayer} Turn!`
@@ -46,3 +46,15 @@ function chooseMessage() {
     displayWinnerMessage()
   }
 }
+
+function restartGame() {
+if (currentGame.playerDraw === true) {
+restartTimer()
+beginGame()
+}
+}
+
+
+function restartTimer() {
+  setTimeout(restartGame, 1000)
+  }
