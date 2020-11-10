@@ -3,7 +3,7 @@ Final Mod1 Solo Project
 
 The game of Tic-Tac-Toe: A game as old at time and A game that is known for its simplicity and prevelence around the world.
 
-Building this game on the other hand, has lead me to a new appreciation for this game and its complexities. In this project, I was able to put into practice the foundations of Javascript, HTML and CSS I have built over the last several weeks. It challenged me to plan, problem solve. Lastly, it brought me a greater understanding of the difference between the data model and DOM and made me more comfortable with building functions and using for loops.
+Building this game on the other hand, has lead me to a new appreciation its complexities. In this project, I was able to put into practice the foundations of Javascript, HTML and CSS I have built over the last several weeks. It challenged me to plan and problem solve. As well as, brought me a greater understanding of the difference between the data model and DOM, made me more comfortable with building complex functions and using for loops and array prototypes to iterate over data.
 
 
 ## Teachnologies and Skills
@@ -32,7 +32,7 @@ I ensured best practices:
  
  On page load, a tic-tac-toe board appears indicating who the first player is.
  
- As a user,
+ #### As a user,
  
   * The first player is able to click any square they desire and a symbol of a moon will appear indicating their player token.
   * The game then switches to player two, as shown at the top of the board with the symbol of saturn.
@@ -40,7 +40,7 @@ I ensured best practices:
     * Note: If a player clicks on a square that is already taken, that square will not be replaced. That currrent player must choose an available square before         switching to the next player.
   * This continues back and forth between players until either a win or draw is achieved.
   
-To win,
+#### To win,
 
    * In order for a player to win, there are 8 possible combinations that can be played. 
      * Combinations include: 3 across, 3 vertically or 2 diagnol.
