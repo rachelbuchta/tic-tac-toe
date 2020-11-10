@@ -27,7 +27,7 @@ class Game {
   }
 
   togglePlayers() {
-    if (this.currentPlayer === this.players[0].token) {
+      if (this.currentPlayer === this.players[0].token) {
       this.currentPlayer = this.players[1].token
     } else if (this.currentPlayer === this.players[1].token) {
       this.currentPlayer = this.players[0].token
@@ -45,7 +45,8 @@ class Game {
       this.gameWinCheck()
       this.togglePlayers()
     }
-  }
+
+    }
 
   populatePlayerData(index) {
     if (this.currentPlayer === this.players[0].token) {
@@ -65,13 +66,16 @@ class Game {
         if (playerOneData.includes(this.winningCombos[i][0])
             && playerOneData.includes(this.winningCombos[i][1])
             && playerOneData.includes(this.winningCombos[i][2])) {
+              console.log("WINNERONE")
           this.gameRunning = false
+          console.log("gamestsatus:", this.gameRunning)
           this.players[0].winner = true
           this.players[0].wins++
           this.playerWin = true
           } else if (playerTwoData.includes(this.winningCombos[i][0])
           && playerTwoData.includes(this.winningCombos[i][1])
           && playerTwoData.includes(this.winningCombos[i][2])) {
+            console.log("WINNERTWO")
           this.gameRunning = false
           this.players[1].winner = true
           this.players[1].wins++
@@ -79,28 +83,28 @@ class Game {
         }
       }
     }
-    this.restartGame()
   }
 
   gameDrawCheck() {
     if (this.turns === 9 && this.playerWin === false) {
+      console.log("poop")
       this.playerDraw = true
       this.gameRunning = false
-      this.restartGame()
     }
   }
+}
 
   // restartTimer() {
   //   setTimeout(this.restartGame(), 1000)
   // }
 
-  restartGame() {
-
-    if (this.playerWin === true || this.playerDraw === true) {
-      this.turns = 0
-      this.board = ["", "", "", "", "", "", "", "", ""]
-      this.players[0].playerData = []
-      this.players[1].playerData = []
-    }
-  }
-}
+//   restartGame() {
+//
+//     if (this.playerWin === true || this.playerDraw === true) {
+//       this.turns = 0
+//       this.board = ["", "", "", "", "", "", "", "", ""]
+//       this.players[0].playerData = []
+//       this.players[1].playerData = []
+//     }
+//   }
+// }
