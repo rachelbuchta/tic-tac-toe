@@ -39,8 +39,8 @@ class Game {
     var emptySquare = ""
     if (this.board[index] === emptySquare) {
       this.board[index] += currentMove
-      this.populatePlayerData(index)
       this.turns++
+      this.populatePlayerData(index)
       this.gameDrawCheck()
       this.gameWinCheck()
       this.togglePlayers()
@@ -58,38 +58,29 @@ class Game {
   }
 
   gameWinCheck() {
-    var playerOneData
-    var playerTwoData
-    if (this.players[0].playerData.length >= 3 || this.players[1].playerData.length >= 3) {
+    var playerOneData = this.players[0].playerData
+    var playerTwoData = this.players[1].playerData
+    if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
       for (var i = 0; i < this.winningCombos.length; i++) {
-        if (this.players[0].playerData.includes(this.winningCombos[i][0])
-            && this.players[0].playerData.includes(this.winningCombos[i][1])
-            && this.players[0].playerData.includes(this.winningCombos[i][2])) {
+        if (playerOneData.includes(this.winningCombos[i][0])
+            && playerOneData.includes(this.winningCombos[i][1])
+            && playerOneData.includes(this.winningCombos[i][2])) {
+          this.gameRunning = false
           this.players[0].winner = true
           this.players[0].wins++
           this.playerWin = true
-        } else if (this.players[1].playerData.includes(this.winningCombos[i][0])
-          && this.players[1].playerData.includes(this.winningCombos[i][1])
-          && this.players[1].playerData.includes(this.winningCombos[i][2])) {
+          } else if (playerTwoData.includes(this.winningCombos[i][0])
+          && playerTwoData.includes(this.winningCombos[i][1])
+          && playerTwoData.includes(this.winningCombos[i][2])) {
+          this.gameRunning = false
           this.players[1].winner = true
           this.players[1].wins++
           this.playerWin = true
         }
       }
     }
+    this.restartGame()
   }
-
-/// currentPlayer
-
-  // (combo[j] === this.players[0].playerData) {
-  //   this.playerWin = true;
-  //   this.players[0].wins++
-  // } else if (combo[j] === this.players[1].playerData) {
-  //   this.playerWin = true;
-  //   this.players[1].wins++
-  //array prortype .includes
-
-
 
   gameDrawCheck() {
     if (this.turns === 9 && this.playerWin === false) {
