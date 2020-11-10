@@ -24,7 +24,7 @@ I ensured best practices:
  
  Project created by Turing School staff.
  
- Special thanks to Scott Schipke, John Adams, or 2010 FE Cohort instructors and peers.
+ Special thanks to Scott Schipke, John Adams, our 2010 FE Cohort instructors and peers.
  
  ## Features
  
@@ -34,14 +34,15 @@ I ensured best practices:
  
  As a user,
  
-  * The first player is able to click and square they desire and a symbol of a moon will appear indicating their player token.
+  * The first player is able to click any square they desire and a symbol of a moon will appear indicating their player token.
   * The game then switches to player two, as shown at the top of the board with the symbol of saturn.
   * Player Two is then able to click any square that is empty.
-    * Note: If a player clicks on a square that is already taken, that square will not be replaced.
-  * This continues back and forth between players until either a win or draw is acheived.
+    * Note: If a player clicks on a square that is already taken, that square will not be replaced. That currrent player must choose an available square before         switching to the next player.
+  * This continues back and forth between players until either a win or draw is achieved.
   
 To win,
 
    * In order for a player to win, there are 8 possible combinations that can be played. 
      * Combinations include: 3 across, 3 vertically or 2 diagnol.
-   * Once a player has won, the game ends and 
+   * Once a player has won, the number of games won are displayed on their respective panels and persist after pageload.
+   * When a game ends in either a win or draw, the game automatically restarts after a few seconds.
