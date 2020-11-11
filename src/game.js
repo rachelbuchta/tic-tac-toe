@@ -1,6 +1,6 @@
 class Game {
   constructor() {
-    this.players = [new Player('1', '🌝'), new Player('2', '🪐')]
+    this.players = [new Player("1", "🌝"), new Player("2", "🪐")]
     this.currentPlayer = null
     this.board = ["", "", "", "", "", "", "", "", ""]
     this.winningCombos = [
@@ -32,7 +32,7 @@ class Game {
     } else {
       this.currentPlayer = this.players[0].token
     }
-    }
+  }
 
 
   makeMove(index) {
