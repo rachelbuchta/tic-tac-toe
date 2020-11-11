@@ -28,7 +28,7 @@ function playGame(event) {
 
 function displayMessage() {
   if (currentGame.playerWin === false) {
-    gameStatus.innerText = `It's ${currentGame.currentPlayer} Turn!`
+    gameStatus.innerText = `It's ${currentGame.currentPlayer}'s Turn!`
   }
   if (currentGame.playerDraw === true) {
     gameStatus.innerText = "It's a draw!"
@@ -67,5 +67,5 @@ function reloadPage() {
 }
 
 function restartTimer() {
-  window.setTimeout(reloadPage, 5000)
+  window.setTimeout(reloadPage, 2000)
 }
