@@ -47,9 +47,7 @@ function displayMessage() {
 
 function displayWins() {
   var playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
-  console.log(playerOneStoredWins)
   var playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
-  console.log(playerTwoStoredWins)
   var playerOneCount = currentGame.players[0].wins
   var playerTwoCount = currentGame.players[1].wins
   if (playerOneCount === 1) {
@@ -71,11 +69,3 @@ function reloadPage() {
 function restartTimer() {
   window.setTimeout(reloadPage, 5000)
 }
-
-// function saveWins() {
-//   event.preventDefault()
-//   for(var i = 0; i < currentGame.players.length; i ++) {
-//   currentGame.players[i].wins.saveWinsToStorage()
-// }
-//   // currentGame.players[1].saveWinsToStorage()
-// }

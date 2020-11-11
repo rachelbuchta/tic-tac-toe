@@ -29,10 +29,11 @@ class Game {
   togglePlayers() {
     if (this.currentPlayer === this.players[0].token) {
       this.currentPlayer = this.players[1].token
-    } else if (this.currentPlayer === this.players[1].token) {
+    } else {
       this.currentPlayer = this.players[0].token
     }
-  }
+    }
+
 
   makeMove(index) {
     var currentMove = this.currentPlayer
@@ -51,7 +52,7 @@ class Game {
     if (this.currentPlayer === this.players[0].token) {
       this.players[0].playerData.push(parseInt(index))
       return this.players[0].playerData
-    } else if (this.currentPlayer === this.players[1].token) {
+    } else {
       this.players[1].playerData.push(parseInt(index))
       return this.players[1].playerData
     }
