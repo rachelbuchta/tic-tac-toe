@@ -26,6 +26,12 @@ I ensured best practices:
  
  Special thanks to [Scott Schipke](https://github.com/sschipke), John Adams, [Cooper Terrones](https://github.com/coopterrones) our 2010 FE Cohort instructors and peers.
  
+ ## Future Iterations
+ 
+ Currently, there are no planned additions to this tic-tac-toe game.
+ 
+ If I did, I would add a feature to play against the computer and add the winning boards to the respective player. It would also be cool to have and animation    that shot a shooting star across the board when a player has won.
+ 
  ## Features
  
  ### User Functionality
