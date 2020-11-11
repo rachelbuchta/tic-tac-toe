@@ -14,6 +14,7 @@ gameBoard.addEventListener("click", playGame)
 function beginGame() {
   currentGame.assignPlayer()
   displayMessage()
+  displayWins()
 }
 
 function playGame(event) {
@@ -26,23 +27,45 @@ function playGame(event) {
 }
 
 function displayMessage() {
-  if (currentGame.gameRunning === true) {
+  if (currentGame.playerWin === false) {
     gameStatus.innerText = `It's ${currentGame.currentPlayer} Turn!`
-  } else if (currentGame.playerDraw === true) {
+  }
+  if (currentGame.playerDraw === true) {
     gameStatus.innerText = "It's a draw!"
-  } else if (currentGame.playerWin === true) {
-    gameStatus.innerText = `${currentGame.currentPlayer} Won!`
+    restartTimer()
+  }
+  if (currentGame.players[0].winner === true) {
+    gameStatus.innerText = `${currentGame.players[0].token} Won!`
+    displayWins()
+    restartTimer()
+  } else if (currentGame.players[1].winner === true) {
+    gameStatus.innerText = `${currentGame.players[1].token} Won!`
+    displayWins()
+    restartTimer()
   }
 }
 
-function restartGame() {
-if (currentGame.playerDraw === true) {
-restartTimer()
-beginGame()
-}
+function displayWins() {
+  var playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
+  var playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
+  var playerOneCount = currentGame.players[0].wins
+  var playerTwoCount = currentGame.players[1].wins
+  if (playerOneCount === 1) {
+    playerOneWins.innerText = `${playerOneCount} Win`
+  } else if (playerOneCount > 1) {
+    playerOneWins.innerText = `${playerOneCount} Wins`
+  }
+  if (playerTwoCount === 1) {
+    playerTwoWins.innerText = `${playerTwoCount} Win`
+  } else if (playerTwoCount > 1) {
+    playerTwoWins.innerText = `${playerTwoCount} Wins`
+  }
 }
 
+function reloadPage() {
+  window.location.reload()
+}
 
 function restartTimer() {
-  setTimeout(restartGame, 1000)
-  }
+  window.setTimeout(reloadPage, 5000)
+}

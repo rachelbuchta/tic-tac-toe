@@ -84,21 +84,16 @@ p {
 #box4,
 #box5 {
   border-bottom: .2em solid black;
-  padding-top: 1%;
-
 }
 
 #box0,
 #box3,
 #box6 {
   border-right: .2em solid black;
-
-
 }
 
 #box2,
 #box5,
 #box8 {
   border-left: .2em solid black;
-
 }
