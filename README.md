@@ -37,6 +37,8 @@ I ensured best practices:
  ### User Functionality
  
  On page load, a tic-tac-toe board appears indicating at the top of the page who the first player is.
+ #### Main View
+ Screen Shot 2020-11-10 at 7.22.34 PM
  
  #### As a user,
  
