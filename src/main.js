@@ -67,5 +67,5 @@ function reloadPage() {
 }
 
 function restartTimer() {
-  window.setTimeout(reloadPage, 5000)
+  window.setTimeout(reloadPage, 3000)
 }
