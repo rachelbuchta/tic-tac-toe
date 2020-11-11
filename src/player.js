@@ -12,9 +12,11 @@ class Player {
   }
 
   retrieveWinsFromStorage() {
-    for(var i = 0; i < localStorage.length; i ++) {
-    var retrievedWins = JSON.parse(localStorage.getItem(`player${this.id}`))
-}
+
+      var retrievedWins = JSON.parse(localStorage.getItem(`player${this.id}`))
+      if (retrievedWins) {
+        this.wins = retrievedWins
+      }
   }
 
 }

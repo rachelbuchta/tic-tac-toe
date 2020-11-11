@@ -27,7 +27,7 @@ class Game {
   }
 
   togglePlayers() {
-      if (this.currentPlayer === this.players[0].token) {
+    if (this.currentPlayer === this.players[0].token) {
       this.currentPlayer = this.players[1].token
     } else if (this.currentPlayer === this.players[1].token) {
       this.currentPlayer = this.players[0].token
@@ -45,7 +45,7 @@ class Game {
       this.gameWinCheck()
       this.togglePlayers()
     }
-    }
+  }
 
   populatePlayerData(index) {
     if (this.currentPlayer === this.players[0].token) {
@@ -62,25 +62,22 @@ class Game {
     var playerTwoData = this.players[1].playerData
     if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
       for (var i = 0; i < this.winningCombos.length; i++) {
-        if (playerOneData.includes(this.winningCombos[i][0])
-            && playerOneData.includes(this.winningCombos[i][1])
-            && playerOneData.includes(this.winningCombos[i][2])) {
-              debugger
+        if (playerOneData.includes(this.winningCombos[i][0]) &&
+          playerOneData.includes(this.winningCombos[i][1]) &&
+          playerOneData.includes(this.winningCombos[i][2])) {
           this.gameRunning = false
           this.players[0].winner = true
           this.players[0].wins++
           this.playerWin = true
           this.players[0].saveWinsToStorage()
-          // this.restartGame()
-          } else if (playerTwoData.includes(this.winningCombos[i][0])
-          && playerTwoData.includes(this.winningCombos[i][1])
-          && playerTwoData.includes(this.winningCombos[i][2])) {
+        } else if (playerTwoData.includes(this.winningCombos[i][0]) &&
+          playerTwoData.includes(this.winningCombos[i][1]) &&
+          playerTwoData.includes(this.winningCombos[i][2])) {
           this.gameRunning = false
           this.players[1].winner = true
           this.players[1].wins++
           this.playerWin = true
           this.players[1].saveWinsToStorage()
-          // this.restartGame()
         }
       }
     }
@@ -89,20 +86,7 @@ class Game {
   gameDrawCheck() {
     if (this.turns === 9 && this.playerWin === false) {
       this.playerDraw = true
+      this.gameRunning = false
     }
   }
-
-
-  // restartTimer() {
-  //   setTimeout(this.restartGame(), 1000)
-  // }
-
-//   restartGame() {
-//     if (this.playerWin === true || this.playerDraw === true) {
-//       this.turns = 0
-//       this.board = ["", "", "", "", "", "", "", "", ""]
-//       this.players[0].playerData = []
-//       this.players[1].playerData = []
-//     }
-//   }
-// }
+}

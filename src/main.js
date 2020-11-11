@@ -12,12 +12,9 @@ window.addEventListener("load", beginGame)
 gameBoard.addEventListener("click", playGame)
 
 function beginGame() {
-  event.preventDefault()
   currentGame.assignPlayer()
   displayMessage()
   displayWins()
-
-
 }
 
 function playGame(event) {
@@ -27,7 +24,6 @@ function playGame(event) {
     clickedSquare[i].innerText = currentGame.board[i]
   }
   displayMessage()
-
 }
 
 function displayMessage() {
@@ -36,27 +32,26 @@ function displayMessage() {
   }
   if (currentGame.playerDraw === true) {
     gameStatus.innerText = "It's a draw!"
-    // restartGame()
+    restartTimer()
   }
   if (currentGame.players[0].winner === true) {
     gameStatus.innerText = `${currentGame.players[0].token} Won!`
     displayWins()
-    // saveWins()
-    // restartGame()
+    restartTimer()
   } else if (currentGame.players[1].winner === true) {
     gameStatus.innerText = `${currentGame.players[1].token} Won!`
     displayWins()
-    // saveWins()
-    // restartGame()
+    restartTimer()
   }
 }
 
 function displayWins() {
-  debugger
+  var playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
+  console.log(playerOneStoredWins)
+  var playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
+  console.log(playerTwoStoredWins)
   var playerOneCount = currentGame.players[0].wins
   var playerTwoCount = currentGame.players[1].wins
-  currentGame.players[0].retrieveWinsFromStorage()
-  currentGame.players[1].retrieveWinsFromStorage()
   if (playerOneCount === 1) {
     playerOneWins.innerText = `${playerOneCount} Win`
   } else if (playerOneCount > 1) {
@@ -67,11 +62,16 @@ function displayWins() {
   } else if (playerTwoCount > 1) {
     playerTwoWins.innerText = `${playerTwoCount} Wins`
   }
-  }
-
-function loadFromStorage() {
-
 }
+
+function reloadPage() {
+  window.location.reload()
+}
+
+function restartTimer() {
+  window.setTimeout(reloadPage, 5000)
+}
+
 // function saveWins() {
 //   event.preventDefault()
 //   for(var i = 0; i < currentGame.players.length; i ++) {
@@ -79,17 +79,3 @@ function loadFromStorage() {
 // }
 //   // currentGame.players[1].saveWinsToStorage()
 // }
-
-// function restartGame() {
-//
-// restartTimer()
-// beginGame()
-//
-// }
-
-// function that triggers the time timmeout when its a win or draw
-// function restartTimer() {
-//   window.setTimeout(restartGame, 6000)
-//   }
-
-  // window.setTimeout(resetGame, 6000)
