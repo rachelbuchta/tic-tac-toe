@@ -38,7 +38,7 @@ I ensured best practices:
  
  On page load, a tic-tac-toe board appears indicating at the top of the page who the first player is.
  #### Main View
-![screenshot of main view](Screen Shot 2020-11-10 at 7.22.34 PM.png)
+![screenshot of main view](file:///var/folders/tq/prx9p52d6cdghtv719tks2yr0000gn/T/TemporaryItems/(A%20Document%20Being%20Saved%20By%20screencaptureui%206)/Screen%20Shot%202020-11-10%20at%207.58.42%20PM.png)
  
  #### As a user,
  
