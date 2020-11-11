@@ -1,9 +1,9 @@
 # tic-tac-toe
 Final Mod1 Solo Project
 
-The game of Tic-Tac-Toe: A game as old at time and A game that is known for its simplicity and prevelence around the world.
+The game of Tic-Tac-Toe: A game as old as time and A game that is known for its simplicity and prevelence around the world.
 
-Building this game on the other hand, has lead me to a new appreciation its complexities. In this project, I was able to put into practice the foundations of Javascript, HTML and CSS I have built over the last several weeks. It challenged me to plan and problem solve. As well as, brought me a greater understanding of the difference between the data model and DOM, made me more comfortable with building complex functions and using for loops and array methods to iterate over data.
+Building this game on the other hand, has lead me to a new appreciation of its complexities. In this project, I was able to put into practice the foundations of Javascript, HTML and CSS I have built over the last several weeks. It challenged me to plan and problem solve and reach out for help when I got stuck. As well as, brought me a greater understanding of the relationshhip between the data model and DOM, made me more comfortable with building complex functions, using for loops and array methods to iterate over data.
 
 
 ## Teachnologies and Skills
@@ -37,12 +37,12 @@ I ensured best practices:
  ### User Functionality
  
  On page load, a tic-tac-toe board appears indicating at the top of the page who the first player is.
- #### Main View
+ #### Views
 ![screenshot of main view](https://media.giphy.com/media/FErhZwEsEsa2XcQhe4/giphy.gif)
  
  #### As a user,
  
-  * The first player is able to click any square they desire and a symbol of a moon will appear indicating spot on the board.
+  * The first player is able to click any square they desire and a symbol of a moon will appear indicating their spot on the board.
   * The game then switches to player two, as shown at the top of the board with the symbol of saturn.
   * Player Two is then able to click any square that is empty.
     * Note: If a player clicks on a square that is already taken, that square will not be replaced. The currrent player must choose an available square before         switching to the next player.
@@ -53,6 +53,6 @@ I ensured best practices:
    * In order for a player to win, there are 8 possible combinations that can be played. 
      * Combinations include: 3 across, 3 vertically or 2 diagnol.
    * Once a player has won, the number of games won are displayed in their respective panels and persist after pageload.
-   * The players a alerted with a "You Won" message above the board.
+   * The players are alerted with a "You Won" message above the board.
    * If the game ends in a draw, players are alerted with "It's a Draw!" Message.
    * When a game ends in either a win or draw, the game automatically restarts after a few seconds ready for the next round!
