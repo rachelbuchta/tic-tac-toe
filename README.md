@@ -20,7 +20,7 @@ I ensured best practices:
   
  ## Contributors
  
- Project implementation by Rachel Buchta
+ Project implementation by [Rachel Buchta](https://github.com/rachelbuchta)
  
  Project created by Turing School staff.
  
