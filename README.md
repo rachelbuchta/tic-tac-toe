@@ -55,4 +55,12 @@ I ensured best practices:
    * Once a player has won, the number of games won are displayed in their respective panels and persist after pageload.
    * The players are alerted with a "You Won" message above the board.
    * If the game ends in a draw, players are alerted with "It's a Draw!" Message.
-   * When a game ends in either a win or draw, the game automatically restarts after a few seconds ready for the next round!
+   * When a game ends in either a win or draw, the game automatically restarts after a few seconds ready for the next round
+   
+#### Code Architecure
+
+   * Player.js - This file is in charge of keeping data from each player that is playing in this game. Each player has an id of player one or player two, a token, if they are winner, an amount of wins and keeps track of where on the board a token is being placed to eventually check against the possible winning combinations. This file also holds the functionality of the localStorage of the amount of wins each player has so that it will persist on page reload.
+   
+   * Game.js - This file holds all of the information that goes on during a game. This game class holds an instance of 2 player class instances. It holds the an array of 9 empty spaces in a board as well as the possible 9 winning combonations. It checks to see if the game is running or not, is a draw or not, who the current player is and how many turns have happened during the game. The functionality in this file determines if a player places a token and every step that happens each time a move is made. After every move, that index is pushed to the respective players data array, is checked to see if it is a win or draw and if it isnt, toggles to the other player.
+   
+   * Main.js - This file is responsible for reflecting everything that is happening in the game logic to the user. It displays what players turn it is, where the player has placed their token on the board, displays the amount of wins on each players panel and displays a message indicating when it's either a win or draw. This file also holds the functionality so that after a game is over, it automatically reloads a new game.
