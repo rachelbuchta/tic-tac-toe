@@ -1,11 +1,11 @@
-var currentGame = new Game()
+const currentGame = new Game()
 
 //querySelectors
-var gameBoard = document.querySelector(".game-board")
-var clickedSquare = document.querySelectorAll(".box")
-var gameStatus = document.querySelector("h1")
-var playerOneWins = document.querySelector(".player-one-wins")
-var playerTwoWins = document.querySelector(".player-two-wins")
+const gameBoard = document.querySelector(".game-board")
+const clickedSquare = document.querySelectorAll(".box")
+const gameStatus = document.querySelector("h1")
+const playerOneWins = document.querySelector(".player-one-wins")
+const playerTwoWins = document.querySelector(".player-two-wins")
 
 //eventListeners
 window.addEventListener("load", beginGame)
@@ -17,28 +17,37 @@ function beginGame() {
   displayWins()
 }
 
+// function playGame(event) {
+//   var squareIndex = event.target.id[event.target.id.length - 1]
+//   currentGame.makeMove(squareIndex)
+//   for (var i = 0; i < clickedSquare.length; i++) {
+//     clickedSquare[i].innerText = currentGame.board[i]
+//   }
+//   displayMessage()
+// }
+
 function playGame(event) {
-  var squareIndex = event.target.id[event.target.id.length - 1]
+  const squareIndex = event.target.id[event.target.id.length - 1]
   currentGame.makeMove(squareIndex)
-  for (var i = 0; i < clickedSquare.length; i++) {
-    clickedSquare[i].innerText = currentGame.board[i]
-  }
-  displayMessage()
+  return clickedSquare.forEach((square, i) => {
+    square.innerText = currentGame.board[i]
+    displayMessage()
+  })
 }
 
 function displayMessage() {
-  if (currentGame.playerWin === false) {
+  if (!currentGame.playerWin) {
     gameStatus.innerText = `It's ${currentGame.currentPlayer}'s Turn!`
   }
-  if (currentGame.playerDraw === true) {
+  if (currentGame.playerDraw) {
     gameStatus.innerText = "It's a draw!"
     restartTimer()
   }
-  if (currentGame.players[0].winner === true) {
+  if (currentGame.players[0].winner) {
     gameStatus.innerText = `${currentGame.players[0].token} Won!`
     displayWins()
     restartTimer()
-  } else if (currentGame.players[1].winner === true) {
+  } else if (currentGame.players[1].winner) {
     gameStatus.innerText = `${currentGame.players[1].token} Won!`
     displayWins()
     restartTimer()
@@ -46,10 +55,10 @@ function displayMessage() {
 }
 
 function displayWins() {
-  var playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
-  var playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
-  var playerOneCount = currentGame.players[0].wins
-  var playerTwoCount = currentGame.players[1].wins
+  const playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
+  const playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
+  const playerOneCount = currentGame.players[0].wins
+  const playerTwoCount = currentGame.players[1].wins
   if (playerOneCount === 1) {
     playerOneWins.innerText = `${playerOneCount} Win`
   } else if (playerOneCount > 1) {

@@ -36,8 +36,8 @@ class Game {
 
 
   makeMove(index) {
-    var currentMove = this.currentPlayer
-    var emptySquare = ""
+    const currentMove = this.currentPlayer
+    const emptySquare = ""
     if (this.board[index] === emptySquare) {
       this.board[index] += currentMove
       this.turns++
@@ -59,8 +59,8 @@ class Game {
   }
 
   gameWinCheck() {
-    var playerOneData = this.players[0].playerData
-    var playerTwoData = this.players[1].playerData
+    const playerOneData = this.players[0].playerData
+    const playerTwoData = this.players[1].playerData
     if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
       for (var i = 0; i < this.winningCombos.length; i++) {
         if (playerOneData.includes(this.winningCombos[i][0]) &&
@@ -83,6 +83,24 @@ class Game {
       }
     }
   }
+
+  // gameWinCheck() {
+  //      return this.winningCombos.forEach((combo, i) => {
+  //        return combo
+  //      })
+  //    }
+  //
+  //
+  //  playerWinCheck() {
+  //    const playerOneData = this.players[0].playerData
+  //    const playerTwoData = this.players[1].playerData
+  //    if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
+  //
+  //    }
+  //  }
+
+
+
 
   gameDrawCheck() {
     if (this.turns === 9 && this.playerWin === false) {
