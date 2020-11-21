@@ -58,30 +58,41 @@ class Game {
   }
 
   gameWinCheck = (index) => {
-    const playerOneData = this.players[0].playerData
-    const playerTwoData = this.players[1].playerData
-    if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
+    this.comparePlayerDataAndCombos(0)
+    this.comparePlayerDataAndCombos(1)
+  }
+
+  // comparePlayerDataAndCombos = (index) => {
+  //   if (this.players[index].playerData.length >= 3) {
+  //     for (var i = 0; i < this.winningCombos.length; i++) {
+  //       if (this.players[index].playerData.includes(this.winningCombos[i][0]) &&
+  //         this.players[index].playerData.includes(this.winningCombos[i][1]) &&
+  //         this.players[index].playerData.includes(this.winningCombos[i][2])) {
+  //         this.changeGameConditions(index)
+  //       }
+  //     }
+  //   }
+  // }
+
+  comparePlayerDataAndCombos = (index) => {
+    if (this.players[index].playerData.length >= 3) {
       for (var i = 0; i < this.winningCombos.length; i++) {
-        if (playerOneData.includes(this.winningCombos[i][0]) &&
-          playerOneData.includes(this.winningCombos[i][1]) &&
-          playerOneData.includes(this.winningCombos[i][2])) {
-          this.changeGameConditions(0)
-        } else if (playerTwoData.includes(this.winningCombos[i][0]) &&
-          playerTwoData.includes(this.winningCombos[i][1]) &&
-          playerTwoData.includes(this.winningCombos[i][2])) {
-          this.changeGameConditions(1)
+        if (this.players[index].playerData.includes(this.winningCombos[i][0]) &&
+          this.players[index].playerData.includes(this.winningCombos[i][1]) &&
+          this.players[index].playerData.includes(this.winningCombos[i][2])) {
+          this.changeGameConditions(index)
         }
       }
     }
   }
 
-changeGameConditions = (index) => {
-  this.gameRunning = false
-  this.players[index].winner = true
-  this.players[index].wins++
-  this.playerWin = true
-  this.players[index].saveWinsToStorage()
-}
+  changeGameConditions = (index) => {
+    this.gameRunning = false
+    this.players[index].winner = true
+    this.players[index].wins++
+    this.playerWin = true
+    this.players[index].saveWinsToStorage()
+  }
 
   gameDrawCheck = () => {
     if (this.turns === 9 && this.playerWin === false) {

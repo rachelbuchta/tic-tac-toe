@@ -46,6 +46,7 @@ const displayMessage = () => {
   }
 }
 
+
 const displayWins = () => {
   const playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
   const playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
