@@ -19,14 +19,14 @@ class Game {
     this.turns = 0
   }
 
-  assignPlayer() {
+  assignPlayer = () => {
     this.gameRunning = true
     if (this.currentPlayer === null) {
       this.currentPlayer = this.players[0].token;
     }
   }
 
-  togglePlayers() {
+  togglePlayers = () => {
     if (this.currentPlayer === this.players[0].token) {
       this.currentPlayer = this.players[1].token
     } else {
@@ -34,57 +34,53 @@ class Game {
     }
   }
 
-
-  makeMove(index) {
-    var currentMove = this.currentPlayer
-    var emptySquare = ""
+  makeMove = (index) => {
+    const currentMove = this.currentPlayer
+    const emptySquare = ""
     if (this.board[index] === emptySquare) {
       this.board[index] += currentMove
       this.turns++
-      this.populatePlayerData(index)
+      this.populatePlayerData(0, index)
+      this.populatePlayerData(1, index)
       this.gameDrawCheck()
       this.gameWinCheck()
       this.togglePlayers()
     }
   }
 
-  populatePlayerData(index) {
-    if (this.currentPlayer === this.players[0].token) {
-      this.players[0].playerData.push(parseInt(index))
-      return this.players[0].playerData
-    } else {
-      this.players[1].playerData.push(parseInt(index))
-      return this.players[1].playerData
+  populatePlayerData = (playerIndex,index) => {
+    if (this.currentPlayer === this.players[playerIndex].token) {
+      this.players[playerIndex].playerData.push(parseInt(index))
+      return this.players[playerIndex].playerData
     }
   }
 
-  gameWinCheck() {
-    var playerOneData = this.players[0].playerData
-    var playerTwoData = this.players[1].playerData
-    if (playerOneData.length >= 3 || playerTwoData.length >= 3) {
-      for (var i = 0; i < this.winningCombos.length; i++) {
-        if (playerOneData.includes(this.winningCombos[i][0]) &&
-          playerOneData.includes(this.winningCombos[i][1]) &&
-          playerOneData.includes(this.winningCombos[i][2])) {
-          this.gameRunning = false
-          this.players[0].winner = true
-          this.players[0].wins++
-          this.playerWin = true
-          this.players[0].saveWinsToStorage()
-        } else if (playerTwoData.includes(this.winningCombos[i][0]) &&
-          playerTwoData.includes(this.winningCombos[i][1]) &&
-          playerTwoData.includes(this.winningCombos[i][2])) {
-          this.gameRunning = false
-          this.players[1].winner = true
-          this.players[1].wins++
-          this.playerWin = true
-          this.players[1].saveWinsToStorage()
+  gameWinCheck = (index) => {
+    this.comparePlayerDataAndCombos(0)
+    this.comparePlayerDataAndCombos(1)
+  }
+
+  comparePlayerDataAndCombos = (index) => {
+    if (this.players[index].playerData.length >= 3) {
+      return this.winningCombos.forEach((combo, i) => {
+        if (this.players[index].playerData.includes(this.winningCombos[i][0]) &&
+          this.players[index].playerData.includes(this.winningCombos[i][1]) &&
+          this.players[index].playerData.includes(this.winningCombos[i][2])) {
+          this.changeGameConditions(index)
         }
-      }
+      })
     }
   }
 
-  gameDrawCheck() {
+  changeGameConditions = (index) => {
+    this.gameRunning = false
+    this.players[index].winner = true
+    this.players[index].wins++
+    this.playerWin = true
+    this.players[index].saveWinsToStorage()
+  }
+
+  gameDrawCheck = () => {
     if (this.turns === 9 && this.playerWin === false) {
       this.playerDraw = true
       this.gameRunning = false
