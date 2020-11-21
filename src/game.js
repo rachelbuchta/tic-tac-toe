@@ -40,20 +40,18 @@ class Game {
     if (this.board[index] === emptySquare) {
       this.board[index] += currentMove
       this.turns++
-      this.populatePlayerData(index)
+      this.populatePlayerData(0, index)
+      this.populatePlayerData(1, index)
       this.gameDrawCheck()
       this.gameWinCheck()
       this.togglePlayers()
     }
   }
 
-  populatePlayerData = (index) => {
-    if (this.currentPlayer === this.players[0].token) {
-      this.players[0].playerData.push(parseInt(index))
-      return this.players[0].playerData
-    } else {
-      this.players[1].playerData.push(parseInt(index))
-      return this.players[1].playerData
+  populatePlayerData = (playerIndex,index) => {
+    if (this.currentPlayer === this.players[playerIndex].token) {
+      this.players[playerIndex].playerData.push(parseInt(index))
+      return this.players[playerIndex].playerData
     }
   }
 
@@ -62,27 +60,15 @@ class Game {
     this.comparePlayerDataAndCombos(1)
   }
 
-  // comparePlayerDataAndCombos = (index) => {
-  //   if (this.players[index].playerData.length >= 3) {
-  //     for (var i = 0; i < this.winningCombos.length; i++) {
-  //       if (this.players[index].playerData.includes(this.winningCombos[i][0]) &&
-  //         this.players[index].playerData.includes(this.winningCombos[i][1]) &&
-  //         this.players[index].playerData.includes(this.winningCombos[i][2])) {
-  //         this.changeGameConditions(index)
-  //       }
-  //     }
-  //   }
-  // }
-
   comparePlayerDataAndCombos = (index) => {
     if (this.players[index].playerData.length >= 3) {
-      for (var i = 0; i < this.winningCombos.length; i++) {
+      return this.winningCombos.forEach((combo, i) => {
         if (this.players[index].playerData.includes(this.winningCombos[i][0]) &&
           this.players[index].playerData.includes(this.winningCombos[i][1]) &&
           this.players[index].playerData.includes(this.winningCombos[i][2])) {
           this.changeGameConditions(index)
         }
-      }
+      })
     }
   }
 
