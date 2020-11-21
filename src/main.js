@@ -10,21 +10,13 @@ const playerTwoWins = document.querySelector(".player-two-wins")
 //eventListeners
 window.addEventListener("load", beginGame)
 gameBoard.addEventListener("click", playGame)
+// gameBoard.removeEventListener("click",)
 
 function beginGame() {
   currentGame.assignPlayer()
   displayMessage()
   displayWins()
 }
-
-// function playGame(event) {
-//   var squareIndex = event.target.id[event.target.id.length - 1]
-//   currentGame.makeMove(squareIndex)
-//   for (var i = 0; i < clickedSquare.length; i++) {
-//     clickedSquare[i].innerText = currentGame.board[i]
-//   }
-//   displayMessage()
-// }
 
 function playGame(event) {
   const squareIndex = event.target.id[event.target.id.length - 1]
@@ -35,7 +27,7 @@ function playGame(event) {
   })
 }
 
-function displayMessage() {
+const displayMessage = () => {
   if (!currentGame.playerWin) {
     gameStatus.innerText = `It's ${currentGame.currentPlayer}'s Turn!`
   }
@@ -54,7 +46,7 @@ function displayMessage() {
   }
 }
 
-function displayWins() {
+const displayWins = () => {
   const playerOneStoredWins = currentGame.players[0].retrieveWinsFromStorage()
   const playerTwoStoredWins = currentGame.players[1].retrieveWinsFromStorage()
   const playerOneCount = currentGame.players[0].wins
@@ -71,10 +63,10 @@ function displayWins() {
   }
 }
 
-function reloadPage() {
+const reloadPage = () => {
   window.location.reload()
 }
 
-function restartTimer() {
+const restartTimer = () => {
   window.setTimeout(reloadPage, 2000)
 }
